@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Control de Estacionamiento</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="topbar__brand">
+      <span class="topbar__mark">P</span>
+      <div>
+        <h1 class="topbar__title">Control de Estacionamiento</h1>
+        <p class="topbar__subtitle">Tarifa: <span id="tarifa-label">$0.50</span> por hora o fracción</p>
+      </div>
+    </div>
+    <div class="topbar__clock" id="clock">--:--:--</div>
+  </header>
+
+  <main class="layout">
+
+    <section class="panel panel--entry">
+      <h2 class="panel__title"><span class="dot dot--green"></span> Registrar ingreso</h2>
+      <form id="form-ingreso" class="entry-form">
+        <label for="placa">Placa del vehículo</label>
+        <input type="text" id="placa" name="placa" placeholder="ABC-1234" autocomplete="off" required maxlength="10">
+        <button type="submit">Registrar entrada</button>
+      </form>
+      <p class="entry-form__hint">Se registra automáticamente la fecha y hora actual.</p>
+      <div id="mensaje" class="feedback" hidden></div>
+    </section>
+
+    <section class="panel panel--active">
+      <div class="panel__header">
+        <h2 class="panel__title"><span class="dot dot--amber"></span> Vehículos en el parqueadero</h2>
+        <span class="badge" id="contador-activos">0</span>
+      </div>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Placa</th>
+              <th>Entrada</th>
+              <th>Tiempo</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="tabla-activos">
+            <tr class="empty-row">
+              <td colspan="4">No hay vehículos registrados todavía.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Modal de liquidación de salida -->
+  <div id="modal-salida" class="modal" hidden>
+    <div class="modal__card">
+      <h3>Liquidación de salida</h3>
+      <dl class="ticket">
+        <dt>Placa</dt><dd id="ticket-placa">-</dd>
+        <dt>Entrada</dt><dd id="ticket-entrada">-</dd>
+        <dt>Salida</dt><dd id="ticket-salida">-</dd>
+        <dt>Horas / fracciones cobradas</dt><dd id="ticket-fracciones">-</dd>
+        <dt>Total a pagar</dt><dd id="ticket-monto" class="ticket__total">-</dd>
+      </dl>
+      <button id="btn-cerrar-modal">Cerrar</button>
+    </div>
+  </div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
